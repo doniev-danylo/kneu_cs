@@ -13,13 +13,13 @@
                 case >= 0 and <= 14:
                     Console.WriteLine("The number is in the range [0-14]");
                     break;
-                case >= 15 and <= 35:
+                case <= 35:
                     Console.WriteLine("The number is in the range [15-35]");
                     break;
-                case >= 36 and <= 50:
+                case <= 50:
                     Console.WriteLine("The number is in the range [36-50]");
                     break;
-                case >= 50 and <= 100:
+                case <= 100:
                     Console.WriteLine("The number is in the range [50-100]");
                     break;
                 default:
@@ -73,8 +73,11 @@
 
     public static void Main()
     {
-        Task1();
-        Task2();
-        ConcatenateStrings();
+        while (true)
+        {
+            Task1();
+            Task2();
+            ConcatenateStrings();
+        }
     }
 }
