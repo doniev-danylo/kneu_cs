@@ -2,7 +2,7 @@
 {
     private static void Task1()
     {
-        Console.Write("Task 1");
+        Console.WriteLine("Task 1");
         Console.Write("Enter a number between 0 and 100: ");
         var input = Console.ReadLine();
 
@@ -35,7 +35,7 @@
 
     private static void Task2()
     {
-        Console.Write("Task 2");
+        Console.WriteLine("Task 2");
         Console.Write("Enter the number of clients: ");
         var input = Console.ReadLine();
 
@@ -60,7 +60,7 @@
 
     private static void ConcatenateStrings()
     {
-        Console.Write("Task ConcatenateStrings | variant 5");
+        Console.WriteLine("Concatenate Strings | variant 5");
         Console.Write("Enter the first string: ");
         var str1 = Console.ReadLine();
 
