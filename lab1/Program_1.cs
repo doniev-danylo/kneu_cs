@@ -1,4 +1,4 @@
-﻿public class Program
+﻿public class Program_1
 {
     private static void Task1()
     {
@@ -71,13 +71,13 @@
     }
 
 
-    public static void Main()
-    {
-        while (true)
-        {
-            Task1();
-            Task2();
-            ConcatenateStrings();
-        }
-    }
+    // public static void Main()
+    // {
+    //     while (true)
+    //     {
+    //         Task1();
+    //         Task2();
+    //         ConcatenateStrings();
+    //     }
+    // }
 }
