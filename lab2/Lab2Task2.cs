@@ -20,7 +20,7 @@ public class Lab2Task2
     }
 
 
-    public static void RunTask1(int CarIdToSelect)
+    public static void RunTask2(int CarIdToSelect)
     {
         List<Car> cars = new List<Car>
         {
