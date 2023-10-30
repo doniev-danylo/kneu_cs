@@ -71,13 +71,13 @@
     }
 
 
-    // public static void Main()
-    // {
-    //     while (true)
-    //     {
-    //         Task1();
-    //         Task2();
-    //         ConcatenateStrings();
-    //     }
-    // }
+    public static void Main()
+    {
+        while (true)
+        {
+            Task1();
+            Task2();
+            ConcatenateStrings();
+        }
+    }
 }
