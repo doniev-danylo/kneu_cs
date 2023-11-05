@@ -2,11 +2,26 @@
 
 namespace ReflectionApp
 {
-    class Program
+    class Lab3Task1
     {
+        static string PathResolver(string filePath)
+        {
+            var projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent?.Parent?.FullName;
+            var filePathFromRoot = Path.Combine(projectDirectory, filePath);
+            Console.WriteLine(filePath);
+
+            if (File.Exists(filePathFromRoot))
+            {
+                return filePathFromRoot;
+            }
+
+            return filePath;
+        }
+
         static void Main(string[] args)
         {
-            Assembly assembly = Assembly.LoadFrom("/Users/donevd/Documents/КНЕУ/апбд/kneu_cs/lab3/TemperatureConverter.dll");
+            Assembly assembly =
+                Assembly.LoadFrom(PathResolver("TemperatureConverter.dll"));
             Type type = assembly.GetType("TemperatureConverter.TemperatureConverter");
             MethodInfo method = type.GetMethod("ConvertCelsiusToFahrenheit");
 
