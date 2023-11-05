@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/donevd/RiderProjects/kneu_cs/lab2/lab2.csproj": {}
+    "/Users/donevd/RiderProjects/kneu_cs2/lab2/lab2.csproj": {}
   },
   "projects": {
-    "/Users/donevd/RiderProjects/kneu_cs/lab2/lab2.csproj": {
+    "/Users/donevd/RiderProjects/kneu_cs2/lab2/lab2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/donevd/RiderProjects/kneu_cs/lab2/lab2.csproj",
+        "projectUniqueName": "/Users/donevd/RiderProjects/kneu_cs2/lab2/lab2.csproj",
         "projectName": "lab2",
-        "projectPath": "/Users/donevd/RiderProjects/kneu_cs/lab2/lab2.csproj",
+        "projectPath": "/Users/donevd/RiderProjects/kneu_cs2/lab2/lab2.csproj",
         "packagesPath": "/Users/donevd/.nuget/packages/",
-        "outputPath": "/Users/donevd/RiderProjects/kneu_cs/lab2/obj/",
+        "outputPath": "/Users/donevd/RiderProjects/kneu_cs2/lab2/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/donevd/.nuget/NuGet/NuGet.Config"

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/donevd/RiderProjects/kneu_cs/lab3/lab3.csproj",
+      "projectUniqueName": "/Users/donevd/RiderProjects/kneu_cs2/lab3/lab3.csproj",
       "projectName": "lab3",
-      "projectPath": "/Users/donevd/RiderProjects/kneu_cs/lab3/lab3.csproj",
+      "projectPath": "/Users/donevd/RiderProjects/kneu_cs2/lab3/lab3.csproj",
       "packagesPath": "/Users/donevd/.nuget/packages/",
-      "outputPath": "/Users/donevd/RiderProjects/kneu_cs/lab3/obj/",
+      "outputPath": "/Users/donevd/RiderProjects/kneu_cs2/lab3/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/donevd/.nuget/NuGet/NuGet.Config"

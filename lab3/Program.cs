@@ -1,11 +1,9 @@
-﻿namespace lab2;
+﻿using System;
 
-public class runnerLab2
+class Program
 {
-    private static void Main()
+    static void Main()
     {
-        Lab2Task1.RunTask1();
-        Lab2Task2.RunTask2(1);
-        Lab2Task3.RunTask3();
+        Console.WriteLine("Hello, World!");
     }
 }
