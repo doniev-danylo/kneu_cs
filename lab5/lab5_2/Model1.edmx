@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="MyTableSet" EntityType="Model1.Store.MyTableSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MyTable2Set" EntityType="Model1.Store.MyTable2Set" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="MyTableMyTable2" Association="Model1.Store.MyTableMyTable2">
+      <End Role="MyTable" EntitySet="MyTableSet" />
+      <End Role="MyTable2" EntitySet="MyTable2Set" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MyTableSet">
+    <Key>
+      <PropertyRef Name="Table_id" />
+    </Key>
+    <Property Name="Table_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Some_info" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MyTable2Set">
+    <Key>
+      <PropertyRef Name="Table_id" />
+    </Key>
+    <Property Name="Table_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Some_add_info" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MyTable_Table_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="MyTableMyTable2">
+    <End Role="MyTable" Type="Model1.Store.MyTableSet" Multiplicity="1" />
+    <End Role="MyTable2" Type="Model1.Store.MyTable2Set" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyTable">
+        <PropertyRef Name="Table_id" />
+      </Principal>
+      <Dependent Role="MyTable2">
+        <PropertyRef Name="MyTable_Table_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MyTableSet" EntityType="Model1.MyTable" />
+          <EntitySet Name="MyTable2Set" EntityType="Model1.MyTable2" />
+          <AssociationSet Name="MyTableMyTable2" Association="Model1.MyTableMyTable2">
+            <End Role="MyTable" EntitySet="MyTableSet" />
+            <End Role="MyTable2" EntitySet="MyTable2Set" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MyTable">
+          <Key>
+            <PropertyRef Name="Table_id" />
+          </Key>
+          <Property Name="Table_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Some_info" Type="String" Nullable="false" />
+          <NavigationProperty Name="MyTable2" Relationship="Model1.MyTableMyTable2" FromRole="MyTable" ToRole="MyTable2" />
+        </EntityType>
+        <EntityType Name="MyTable2">
+          <Key>
+            <PropertyRef Name="Table_id" />
+          </Key>
+          <Property Name="Table_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Some_add_info" Type="String" Nullable="false" />
+          <NavigationProperty Name="MyTable" Relationship="Model1.MyTableMyTable2" FromRole="MyTable2" ToRole="MyTable" />
+        </EntityType>
+        <Association Name="MyTableMyTable2">
+          <End Type="Model1.MyTable" Role="MyTable" Multiplicity="1" />
+          <End Type="Model1.MyTable2" Role="MyTable2" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="MyTableSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.MyTable)">
+        <MappingFragment StoreEntitySet="MyTableSet">
+          <ScalarProperty Name="Table_id" ColumnName="Table_id" />
+          <ScalarProperty Name="Some_info" ColumnName="Some_info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyTable2Set">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.MyTable2)">
+        <MappingFragment StoreEntitySet="MyTable2Set">
+          <ScalarProperty Name="Table_id" ColumnName="Table_id" />
+          <ScalarProperty Name="Some_add_info" ColumnName="Some_add_info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="MyTableMyTable2" TypeName="Model1.MyTableMyTable2" StoreEntitySet="MyTable2Set">
+      <EndProperty Name="MyTable">
+        <ScalarProperty Name="Table_id" ColumnName="MyTable_Table_id" />
+      </EndProperty>
+      <EndProperty Name="MyTable2">
+        <ScalarProperty Name="Table_id" ColumnName="Table_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

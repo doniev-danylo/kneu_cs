@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MyDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MyTable">
+          <Key>
+            <PropertyRef Name="Table_id" />
+          </Key>
+          <Property Name="Table_id" Type="int" Nullable="false" />
+          <Property Name="Some_info" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MyDatabase.dbo.MyTable2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MyTable2">
+          <Key>
+            <PropertyRef Name="Table_id" />
+          </Key>
+          <Property Name="Table_id" Type="int" Nullable="false" />
+          <Property Name="Some_add_info" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_MyTable_MyTable">
+          <End Role="MyTable" Type="Self.MyTable" Multiplicity="1" />
+          <End Role="MyTable1" Type="Self.MyTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MyTable">
+              <PropertyRef Name="Table_id" />
+            </Principal>
+            <Dependent Role="MyTable1">
+              <PropertyRef Name="Table_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyTable2_MyTable">
+          <End Role="MyTable" Type="Self.MyTable" Multiplicity="1" />
+          <End Role="MyTable2" Type="Self.MyTable2" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MyTable">
+              <PropertyRef Name="Table_id" />
+            </Principal>
+            <Dependent Role="MyTable2">
+              <PropertyRef Name="Table_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyDatabaseModelStoreContainer">
+          <EntitySet Name="MyTable" EntityType="Self.MyTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyTable2" EntityType="Self.MyTable2" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[MyTable2].[Table_id] AS [Table_id], 
+[MyTable2].[Some_add_info] AS [Some_add_info]
+FROM [dbo].[MyTable2] AS [MyTable2]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_MyTable_MyTable" Association="Self.FK_MyTable_MyTable">
+            <End Role="MyTable" EntitySet="MyTable" />
+            <End Role="MyTable1" EntitySet="MyTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyTable2_MyTable" Association="Self.FK_MyTable2_MyTable">
+            <End Role="MyTable" EntitySet="MyTable" />
+            <End Role="MyTable2" EntitySet="MyTable2" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MyTable">
+          <Key>
+            <PropertyRef Name="Table_id" />
+          </Key>
+          <Property Name="Table_id" Type="Int32" Nullable="false" />
+          <Property Name="Some_info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MyTable1" Relationship="Self.FK_MyTable_MyTable" FromRole="MyTable" ToRole="MyTable1" />
+          <NavigationProperty Name="MyTable2" Relationship="Self.FK_MyTable_MyTable" FromRole="MyTable1" ToRole="MyTable" />
+          <NavigationProperty Name="MyTable21" Relationship="Self.FK_MyTable2_MyTable" FromRole="MyTable" ToRole="MyTable2" />
+        </EntityType>
+        <EntityType Name="MyTable2">
+          <Key>
+            <PropertyRef Name="Table_id" />
+          </Key>
+          <Property Name="Table_id" Type="Int32" Nullable="false" />
+          <Property Name="Some_add_info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MyTable" Relationship="Self.FK_MyTable2_MyTable" FromRole="MyTable2" ToRole="MyTable" />
+        </EntityType>
+        <Association Name="FK_MyTable_MyTable">
+          <End Role="MyTable" Type="Self.MyTable" Multiplicity="1" />
+          <End Role="MyTable1" Type="Self.MyTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MyTable">
+              <PropertyRef Name="Table_id" />
+            </Principal>
+            <Dependent Role="MyTable1">
+              <PropertyRef Name="Table_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyTable2_MyTable">
+          <End Role="MyTable" Type="Self.MyTable" Multiplicity="1" />
+          <End Role="MyTable2" Type="Self.MyTable2" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MyTable">
+              <PropertyRef Name="Table_id" />
+            </Principal>
+            <Dependent Role="MyTable2">
+              <PropertyRef Name="Table_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MyTable" EntityType="Self.MyTable" />
+          <EntitySet Name="MyTable2" EntityType="Self.MyTable2" />
+          <AssociationSet Name="FK_MyTable_MyTable" Association="Self.FK_MyTable_MyTable">
+            <End Role="MyTable" EntitySet="MyTable" />
+            <End Role="MyTable1" EntitySet="MyTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyTable2_MyTable" Association="Self.FK_MyTable2_MyTable">
+            <End Role="MyTable" EntitySet="MyTable" />
+            <End Role="MyTable2" EntitySet="MyTable2" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyDatabaseModelStoreContainer" CdmEntityContainer="MyDatabaseEntities">
+          <EntitySetMapping Name="MyTable">
+            <EntityTypeMapping TypeName="MyDatabaseModel.MyTable">
+              <MappingFragment StoreEntitySet="MyTable">
+                <ScalarProperty Name="Table_id" ColumnName="Table_id" />
+                <ScalarProperty Name="Some_info" ColumnName="Some_info" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyTable2">
+            <EntityTypeMapping TypeName="MyDatabaseModel.MyTable2">
+              <MappingFragment StoreEntitySet="MyTable2">
+                <ScalarProperty Name="Table_id" ColumnName="Table_id" />
+                <ScalarProperty Name="Some_add_info" ColumnName="Some_add_info" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
